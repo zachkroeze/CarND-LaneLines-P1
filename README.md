@@ -25,7 +25,7 @@ Although having a series of line segments is useful, what is more useful is havi
 * **Plot the lines:**
 Finally, now that a line of best fit for each lane has been determined, the lane lines are plotted inside the region of interest.
 
-### Some example photos and videos can be found here:
+### Example photos
 Below are the five images which were used to guide the development of the lane detection pipeline. As you can see, on these five images the detection performs perfectly.
 
 ![solidWhiteCurve](/test_images_output/solidWhiteCurve.png)
@@ -34,6 +34,8 @@ Below are the five images which were used to guide the development of the lane d
 ![solidYellowurve2](/test_images_output/solidYellowCurve2.png)
 ![solidYellowLeft](/test_images_output/solidYellowLeft.png)
 ![whiteCarLaneSwitch](/test_images_output/whiteCarLaneSwitch.png)
+
+The videos can be found in the folder `/test_videos_output/`
 
 ### Shortcomings of this method
 There are three main shortcomings to this method which we describe here:
