@@ -1,4 +1,4 @@
-# CarND-LaneLines-P1
+# **Finding Lane Lines on the Road**
 This repository is for the first project of the Udacity Self-Driving Car Engineer Nanodegree Program. The project involves using computer vision techniques to find lane markings on the road. This document gives an overview of the lane detection pipeline used to annotate both images and videos.
 
 ### Lane Finding Pipeline
@@ -17,10 +17,10 @@ Canny edge detection is a classic computer vision technique which uses the gradi
 This step relies on the fact that the camera position on the vehicle remains constant, and therefore the region of the road in which we would like to search for lane markings is relatively fixed. We mask out any pixels which are outside our region of interest.
 
 * **Hough transform to determine line segments:**
-We now have pixels which are inside our region of interest that also have high gradient in the image. We only want to keep the subset of these pixels which can be fit to line segments using neighboring pixels. This is achieved by transforming each pixel to a line in the parameter space. Areas of the parameter space which have multiple intersections all correspond to pixels along the same line in the image. This gives us a good estimate of not only the lane marking pixels, but also smaller line segments which can be used to define an equation of a line. Also, since these lines all have slope, we can use the slope information (negative or positive) to segment the lane segments as either corresponding to a left lane line segment or right lane line segment.
+We now have pixels which are inside our region of interest that also have high gradient in the image. We only want to keep the subset of these pixels which can be fit to line segments using neighboring pixels. This is achieved by transforming each pixel to a line in the parameter space. Areas of the parameter space which have multiple intersections all correspond to pixels along the same line in the image. This gives us a good estimate of not only the lane marking pixels, but also smaller line segments which can be used to define an equation of a line. 
 
-* **Linear Least Squares:**
-Although having a series of line segments is useful, what is more useful is having a single equation of a line to be used to describe the lane. In order to achieve this, each line segment is converted into a sequence of `(x,y)` points corresponding to the lane length. Using linear least squares, a line of best fit is found to the data points.
+* **Linear Least Squares (modifying `draw_lines()`):**
+Although having a series of line segments is useful, what is more useful is having a single equation of a line to be used to describe the lane. In order to achieve this, each line segment is converted into a sequence of `(x,y)` points. The number of points each line segment generates corresponds to the length of the line segment. We also classify the points as either being a left lane point, or right lane point. This is determined using the slope information (negative or positive) for left or right lanes. Using linear least squares, a line of best fit is found for each lane.
 
 * **Plot the lines:**
 Finally, now that a line of best fit for each lane has been determined, the lane lines are plotted inside the region of interest.
